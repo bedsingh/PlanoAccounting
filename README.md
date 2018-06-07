@@ -21,6 +21,9 @@ To Run Plano Accounting application local in your system, you should have the fo
 ## Some URLs to download softwares
 * Postgresql download: https://www.enterprisedb.com/downloads/postgres-postgresql-downloads
 * dbForge Studio for PostgreSQ: https://www.devart.com/dbforge/postgresql/studio/download.html
+* Architecture Diagram:  https://www.draw.io/ 
+* GitBash :  https://git-scm.com/downloads
+* Maven : https://maven.apache.org/download.cgi
 
 ## Running the Application
 * Install Java 8, PostGreSQL DB, Maven, GitBash, dbForge UI pgsql, Postman
