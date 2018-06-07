@@ -9,6 +9,7 @@ Create a Java web application with RESTful APIs to:
   3. Get all clients by client type i.e. Individual or Business. 
   4. Update client information. 
   5. Delete existing client.
+  
 It should be a working application that the candidate should be able to demo during the in-person interview.
 Please feel free to use any open source libraries, frameworks, database – relational or NoSQL and app server.
 
