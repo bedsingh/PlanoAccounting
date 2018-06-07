@@ -1,0 +1,231 @@
+{
+	"info": {
+		"_postman_id": "f815a1be-4787-433a-927f-0cb1a3ad2631",
+		"name": "Plano Accounting",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "HealthCheck",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8084/plano-accounting-web/healthcheck",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"plano-accounting-web",
+						"healthcheck"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Customers",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"firstName\" : \"Ved\",\n\t\"lastName\" : \"Singh\",\n\t\"customerType\" : \"Individual\",\n\t\"addressLine1\" : \"8001 Memorial Lane\",\n\t\"addressLine2\" : \"\",\n\t\"appartment\" : \"2001\",\n\t\"city\" : \"Frisco\",\n\t\"stateCode\" : \"TX\",\n\t\"postalCode\" : \"75924\",\n\t\"phoneNumber\" : \"222-555-9999\",\n\t\"emailId\" : \"vedsingh-temp@gmail.com\",\n\t\"createdByUser\": \"1234567\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8084/plano-accounting-web/customers?customerType=Business",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"plano-accounting-web",
+						"customers"
+					],
+					"query": [
+						{
+							"key": "customerType",
+							"value": "Business"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Single Customer",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"firstName\" : \"Ved\",\n\t\"lastName\" : \"Singh\",\n\t\"customerType\" : \"Individual\",\n\t\"addressLine1\" : \"8001 Memorial Lane\",\n\t\"addressLine2\" : \"\",\n\t\"appartment\" : \"2001\",\n\t\"city\" : \"Frisco\",\n\t\"stateCode\" : \"TX\",\n\t\"postalCode\" : \"75924\",\n\t\"phoneNumber\" : \"222-555-9999\",\n\t\"emailId\" : \"vedsingh-temp@gmail.com\",\n\t\"createdByUser\": \"1234567\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8084/plano-accounting-web/customers/21",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"plano-accounting-web",
+						"customers",
+						"21"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Customer",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"firstName\" : \"John\",\n\t\"lastName\" : \"Dao\",\n\t\"customerType\" : \"Business\",\n\t\"addressLine1\" : \"8001 Memorial Lane\",\n\t\"addressLine2\" : \"\",\n\t\"appartment\" : \"2001\",\n\t\"city\" : \"Frisco\",\n\t\"stateCode\" : \"TX\",\n\t\"postalCode\" : \"75924\",\n\t\"phoneNumber\" : \"222-555-9997\",\n\t\"emailId\" : \"vedsingh@gmail.com\",\n\t\"createdByUser\": \"1234567\",\n\t\"updatedByUser\" : \"1234567\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8084/plano-accounting-web/customers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"plano-accounting-web",
+						"customers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Customer",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"customerId\": \"17\",\n\t\"firstName\" : \"Hello\",\n\t\"lastName\" : \"Dao\",\n\t\"customerType\" : \"Business\",\n\t\"addressLine1\" : \"8001 Memorial Lane\",\n\t\"addressLine2\" : \"Frisco Apt\",\n\t\"appartment\" : \"2001\",\n\t\"city\" : \"Frisco\",\n\t\"stateCode\" : \"TX\",\n\t\"postalCode\" : \"75924\",\n\t\"phoneNumber\" : \"222-555-9997\",\n\t\"emailId\" : \"vedsingh@gmail.com\",\n\t\"createdByUser\": \"1234567\",\n\t\"updatedByUser\" : \"1234567\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8084/plano-accounting-web/customers/17",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"plano-accounting-web",
+						"customers",
+						"17"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Customer",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8084/plano-accounting-web/customers/20",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"plano-accounting-web",
+						"customers",
+						"20"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
