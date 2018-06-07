@@ -1,0 +1,48 @@
+
+
+https://dev.mysql.com/downloads/file/?id=476696
+https://downloads.mysql.com/archives/gui/
+
+Postgresql download:
+https://www.enterprisedb.com/downloads/postgres-postgresql-downloads
+
+https://www.postgresql.org/ftp/pgadmin/pgadmin4/v3.0/windows/
+
+C:\Program Files\PostgreSQL\10
+5432
+
+
+Installation Directory: C:\Program Files\PostgreSQL\10
+Server Installation Directory: C:\Program Files\PostgreSQL\10
+Data Directory: C:\Program Files\PostgreSQL\10\data
+Database Port: 5432
+Database Superuser: postgres
+Operating System Account: NT AUTHORITY\NetworkService
+Database Service: postgresql-x64-10
+Command Line Tools Installation Directory: C:\Program Files\PostgreSQL\10
+pgAdmin4 Installation Directory: C:\Program Files\PostgreSQL\10\pgAdmin 4
+Stack Builder Installation Directory: C:\Program Files\PostgreSQL\10
+
+
+https://www.devart.com/dbforge/postgresql/studio/download.html
+
+
+    create table cust (
+       cust_id int8 not null,
+        addr_line_1 varchar(255),
+        addr_line_2 varchar(255),
+        aprtmnt varchar(255),
+        city varchar(255),
+        cretd_by_id int8 not null,
+        cretd_dt timestamp not null,
+        cust_type varchar(255),
+        email varchar(255),
+        frst_nm varchar(255),
+        last_nm varchar(255),
+        phn_number varchar(255),
+        zip_cd int4,
+        st_cd varchar(255),
+        updt_by_id int8 not null,
+        updt_dt timestamp not null,
+        primary key (cust_id)
+    )
