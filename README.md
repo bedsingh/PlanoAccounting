@@ -9,6 +9,7 @@ To Run Plano Accounting application local in your system, you should have the fo
 * Orika Bean Mapping Framework - To transform Object(s)
 * Tomcat Server - Embadded to the application
 * Spring Boot - Version: 2.0.2.RELEASE
+* Postman client for testing Rest endpoints
 * Spring Data JPA With Hibernate
 * Apache Common Lang 3 for Utility helper
 * PostgreSQL Server Database - Version: 10
@@ -17,13 +18,36 @@ To Run Plano Accounting application local in your system, you should have the fo
 * Validation - javax.validation
 * Junit Mockito
 
-## Running the Application
-* 
+## Some URLs to download softwares
+* Postgresql download: https://www.enterprisedb.com/downloads/postgres-postgresql-downloads
+* dbForge Studio for PostgreSQ: https://www.devart.com/dbforge/postgresql/studio/download.html
 
+## Running the Application
+* Install Java 8, PostGreSQL DB, Maven, GitBash, dbForge UI pgsql, Postman
+* Set the class path and path for Java and Maven such as M2_HOME, JAVA_HOME etc. 
+* Clone this project to your system: git clone https://github.com/bedsingh/PlanoAccounting.git
+* Import as maven project to STS IDE and make sure there should not be any error.
+* First time: change spring.jpa.hibernate.ddl-auto=update to spring.jpa.hibernate.ddl-auto=create in application-dev.properties file.
+* Open PlanoAccountingApplication.java -> Right Click on File and Run As -> Spring Boot Application
+* You will see the message like below 
+```java
+2018-06-07 11:44:43.922  INFO 7740 --- [  restartedMain] c.p.a.PlanoAccountingApplication         : -------------------------------------------------------------------------
+2018-06-07 11:44:43.923  INFO 7740 --- [  restartedMain] c.p.a.PlanoAccountingApplication         : ************** PLANO ACCOUNTING API STARTED SUCCESSFULLY. *************** 
+2018-06-07 11:44:43.923  INFO 7740 --- [  restartedMain] c.p.a.PlanoAccountingApplication         : -------------------------------------------------------------------------
+```
+* These are the rest endpoints you need to run in postman
+ - Health Check: http://localhost:8084/plano-accounting-web/healthcheck
+   Header: 
+   Accept:application/json
+   Content-Type:application/json
+*  Success Result of health check: 
+   {
+    "status": "Plano Accounting API is UP."
+   }
+* You can see more endpoints in this page.
 
 ```java
 package com.plano.accounting;
-
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -80,13 +104,48 @@ public class PlanoAccountingApplication extends SpringBootServletInitializer {
 
 }
 
+```
+## Postman Setup
+Get Customers URL: http://localhost:8084/plano-accounting-web/customers?customerType=Business
+Header details will be same for every endpoints: 
+Accept:application/json
+Content-Type:application/json
+
+POST : http://localhost:8084/plano-accounting-web/customers
+Create Customer Request : 
+{
+	"customerId": "24",
+	"firstName" : "John",
+	"lastName" : "Doe",
+	"customerType" : "Individual",
+	"addressLine1" : "8001 Long Drive",
+	"addressLine2" : "Galaxy Apt",
+	"appartment" : "4500",
+	"city" : "Richardson",
+	"stateCode" : "NY",
+	"postalCode" : "75924",
+	"phoneNumber" : "222-555-9997",
+	"emailId" : "john@gmail.com",
+	"createdByUser": "1237",
+	"updatedByUser" : "1237" 
+}
+
+Response: 
+{
+    "customerUserId": 29,
+    "createdTimestamp": "Thu Jun 07 12:05:31 CDT 2018"
+}
+
+
 
 ## Technical Architecture Diagram
+
 
 ## Deployment
 
 ## Build with
 
 ## Author
-* **Ved Singh** - *Initial Work*
+
+*  **Ved Singh** - *Initial Work*
 
