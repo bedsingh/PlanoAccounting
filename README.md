@@ -1,6 +1,18 @@
 ## About Plano Accounting
 Context: Plano Accounting is a firm (company) owned by John Doe, that helps clients manage their accounting books and file their tax returns. He has 2 seasonal employees - Mike and Martha - who help him out with filing simple tax returns during peak tax season. Plano Accounting has 20 existing clients. This year they are planning to grow their business and are willing to add more clients. New clients could be either an Individual or a Business. Since they need to reach out to their clients for any questions or documents, they want to keep their clients' contact information up to date. Occasionally when a client switches to a different accounting firm they also have to remove the client from their system. 
 
+## Functionality / Requirement:
+APIs
+Create a Java web application with RESTful APIs to:
+  1. Create new client, with basic information (just some profile data to be captured). 
+  2. Get a particular client's information. 
+  3. Get all clients by client type i.e. Individual or Business. 
+  4. Update client information. 
+  5. Delete existing client.
+It should be a working application that the candidate should be able to demo during the in-person interview.
+Please feel free to use any open source libraries, frameworks, database – relational or NoSQL and app server.
+
+
 ## Prerequisites
 To Run Plano Accounting application local in your system, you should have the following tools and software installed.
 * Java version - jdk1.8.0_171 or Any Jdk 8 ( jdk-8u171-windows-x64.exe)
@@ -18,14 +30,14 @@ To Run Plano Accounting application local in your system, you should have the fo
 * Validation - javax.validation
 * Junit Mockito
 
-## Some URLs to download softwares
+## URLs to download open source softwares:
 * Postgresql download: https://www.enterprisedb.com/downloads/postgres-postgresql-downloads
 * dbForge Studio for PostgreSQ: https://www.devart.com/dbforge/postgresql/studio/download.html
 * Architecture Diagram:  https://www.draw.io/ 
 * GitBash :  https://git-scm.com/downloads
 * Maven : https://maven.apache.org/download.cgi
 
-## Running the Application
+## Steps to run the Application
 * Install Java 8, PostGreSQL DB, Maven, GitBash, dbForge UI pgsql, Postman
 * Set the class path and path for Java and Maven such as M2_HOME, JAVA_HOME etc. 
 * Clone this project to your system: git clone https://github.com/bedsingh/PlanoAccounting.git
@@ -144,13 +156,13 @@ Response:
 ## Technical Architecture Diagram
 ![PDF](https://github.com/bedsingh/PlanoAccounting/blob/master/Technical_Diagram_Screen.JPG)
 
-# Deployment
+## Deployment
 Tomcat server
 
-# Build with
+## Build with
 $ mvn clean compile package
 
 ## Author
 
-*  **Ved Singh** - *Initial Work*
+*  **Ved Singh** - *Initial Work*  Date Time - 06/07/2018 13:49 
 
