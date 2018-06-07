@@ -104,7 +104,7 @@ public class PlanoAccountingApplication extends SpringBootServletInitializer {
 
 }
 
-```
+
 ## Postman Setup
 Get Customers URL: http://localhost:8084/plano-accounting-web/customers?customerType=Business
 Header details will be same for every endpoints: 
@@ -136,14 +136,16 @@ Response:
     "createdTimestamp": "Thu Jun 07 12:05:31 CDT 2018"
 }
 
-
+```
 
 ## Technical Architecture Diagram
+![PDF](https://github.com/bedsingh/PlanoAccounting/blob/master/Technical_Diagram_Screen.JPG)
 
+# Deployment
+Tomcat server
 
-## Deployment
-
-## Build with
+# Build with
+$ mvn clean compile package
 
 ## Author
 
