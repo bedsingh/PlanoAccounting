@@ -39,6 +39,39 @@
 			"response": []
 		},
 		{
+			"name": "Hystrix Dashboard",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8084/plano-accounting-web/healthcheck",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"plano-accounting-web",
+						"healthcheck"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Get Customers",
 			"request": {
 				"auth": {
@@ -136,7 +169,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"firstName\" : \"John\",\n\t\"lastName\" : \"Dao\",\n\t\"customerType\" : \"Business\",\n\t\"addressLine1\" : \"8001 Memorial Lane\",\n\t\"addressLine2\" : \"\",\n\t\"appartment\" : \"2001\",\n\t\"city\" : \"Frisco\",\n\t\"stateCode\" : \"TX\",\n\t\"postalCode\" : \"75924\",\n\t\"phoneNumber\" : \"222-555-9997\",\n\t\"emailId\" : \"vedsingh@gmail.com\",\n\t\"createdByUser\": \"1234567\",\n\t\"updatedByUser\" : \"1234567\"\n}"
+					"raw": "{\n\t\"firstName\" : \"Ved\",\n\t\"lastName\" : \"Singh\",\n\t\"customerType\" : \"Individual\",\n\t\"addressLine1\" : \"900 Communication Dr\",\n\t\"addressLine2\" : \"Frisco\",\n\t\"appartment\" : \"3322\",\n\t\"city\" : \"Frisco\",\n\t\"stateCode\" : \"PA\",\n\t\"postalCode\" : \"97000\",\n\t\"phoneNumber\" : \"111-222-9990\",\n\t\"emailId\" : \"ved-singh-temp@gmail.com\",\n\t\"createdByUser\": \"8888\",\n\t\"updatedByUser\" : \"8888\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8084/plano-accounting-web/customers",
@@ -212,7 +245,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8084/plano-accounting-web/customers/20",
+					"raw": "http://localhost:8084/plano-accounting-web/customers/27",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -221,7 +254,7 @@
 					"path": [
 						"plano-accounting-web",
 						"customers",
-						"20"
+						"27"
 					]
 				}
 			},
