@@ -41,7 +41,7 @@ public class PlanoAccountingExcepitonHandler {
 		logger.info("Handling Global Excepiton... ");
 		ErrorResponse errorResponse = new ErrorResponse();
 		errorResponse.setDeveloperText(exception.getDeveloperText());
-		errorResponse.setErrorMessage(exception.getMessage());
+		errorResponse.setErrorMessage(exception.getErrorMessage());
 		errorResponse.setStatusCode(HttpStatus.valueOf(exception.getErrorNumber()));
 		return new ResponseEntity<ErrorResponse>(errorResponse, HttpStatus.valueOf(exception.getErrorNumber()));
 	}

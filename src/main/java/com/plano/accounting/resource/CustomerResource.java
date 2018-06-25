@@ -30,6 +30,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.plano.accounting.annotation.ExecutionTimeLog;
+import com.plano.accounting.config.APIPropertyReader;
 import com.plano.accounting.constants.MappingConstants;
 import com.plano.accounting.exception.CustomerException;
 import com.plano.accounting.request.CustomerRequest;
@@ -56,6 +58,9 @@ public class CustomerResource implements MappingConstants {
 
 	@Autowired
 	private CustomerService customerService;
+	
+	@Autowired
+	private APIPropertyReader apiPropertyReader;
 
 
 	/**
@@ -63,9 +68,12 @@ public class CustomerResource implements MappingConstants {
 	 * { "status": "Plano Accounting API is UP." }
 	 * @return { @String } object.
 	 */
+	@ExecutionTimeLog
 	@RequestMapping(path = HEALTH_CHECK_PATH, method = RequestMethod.GET)
 	public String healthCheck() {
 		logger.info("Health Check for Plano Account API.");
+		
+		logger.info("EndPoint: getAuthTokenEapiUrl: "+apiPropertyReader.getEndpoints().getAuthTokenEapiUrl());
 		return PLANO_ACCOUNTING_API_UP;
 	}
 
@@ -75,6 +83,7 @@ public class CustomerResource implements MappingConstants {
 	 * @return object of { @ResponseEntity<CustomerCreatedResponse> }
 	 * @throws CustomerException
 	 */
+	@ExecutionTimeLog
 	@RequestMapping(path = CUSTOMERS_PATH, method = RequestMethod.POST)
 	public ResponseEntity<CustomerCreatedResponse> createCustomer(@Valid @RequestBody CustomerRequest customerRequest ) throws CustomerException
 	{
@@ -91,6 +100,7 @@ public class CustomerResource implements MappingConstants {
 	 * @return { @List<CustomerResponse> }
 	 * @throws CustomerException
 	 */
+	@ExecutionTimeLog
 	@RequestMapping(path = CUSTOMERS_PATH, method = RequestMethod.GET)
 	@CrossOrigin(origins="*")
 	public ResponseEntity<List<CustomerResponse>> getCustomers(@RequestParam(value="customerType") String customerType) throws CustomerException
@@ -108,6 +118,7 @@ public class CustomerResource implements MappingConstants {
 	 * @return
 	 * @throws CustomerException
 	 */
+	@ExecutionTimeLog
 	@RequestMapping(path = CUSTOMERS_ID_PATH, method = RequestMethod.GET)
 	public ResponseEntity<CustomerResponse> getCustomer(@PathVariable(value="customerId") Long customerId) throws CustomerException
 	{
@@ -118,7 +129,7 @@ public class CustomerResource implements MappingConstants {
 		return new ResponseEntity<CustomerResponse>(customerResponse, HttpStatus.OK);
 	}
 
-
+	@ExecutionTimeLog
 	@RequestMapping(path = CUSTOMERS_ID_PATH, method = RequestMethod.PUT)
 	public ResponseEntity<CustomerResponse> updateCustomer(
 			@Valid @RequestBody CustomerRequest customerRequest,
@@ -138,7 +149,8 @@ public class CustomerResource implements MappingConstants {
 	 * @return
 	 * @throws CustomerException
 	 */
-	@RequestMapping(path = CUSTOMERS_ID_PATH, method = RequestMethod.DELETE)
+	@ExecutionTimeLog
+	@RequestMapping(path = CUSTOMERS_ID_PATH, method = RequestMethod.DELETE, produces= {MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<String> deleteCustomer(@PathVariable(value="customerId") Long customerId) throws CustomerException
 	{
 		logger.info("Delete customerId: "+customerId);

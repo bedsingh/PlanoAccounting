@@ -9,7 +9,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
+import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboard;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 /***********************************************************************************************************
@@ -27,6 +31,10 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
  * This is the main java class to run the plano accounting api. 
  ***********************************************************************************************************/
 
+@Configuration 
+@EnableAspectJAutoProxy(proxyTargetClass = true)
+@EnableHystrixDashboard
+@EnableCircuitBreaker
 @EnableJpaRepositories
 @EnableAutoConfiguration
 @EntityScan(basePackages= {"com.plano.accounting.repository.entity"})
@@ -44,6 +52,11 @@ public class PlanoAccountingApplication extends SpringBootServletInitializer {
 
 		SpringApplication.run(PlanoAccountingApplication.class, args);
 
+		//		SpringApplication springApplication = new SpringApplication();
+		//		springApplication.addListeners(new ApplicationStartupConfig());
+		//		springApplication.setSources(new HashSet<String>(Arrays.asList("PlanoAccountingApplication.class")));
+		//		ConfigurableApplicationContext context = springApplication.run(args);
+
 		logger.info(dashLine);
 		logger.info("************** PLANO ACCOUNTING API STARTED SUCCESSFULLY. *************** ");
 		logger.info(dashLine);
@@ -51,7 +64,8 @@ public class PlanoAccountingApplication extends SpringBootServletInitializer {
 
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-		return application.sources(PlanoAccountingApplication.class);
+		return //application.listeners(new ApplicationStartupConfig())
+				application.sources(PlanoAccountingApplication.class);
 	}
 
 }

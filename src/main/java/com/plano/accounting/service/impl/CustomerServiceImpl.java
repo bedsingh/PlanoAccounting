@@ -26,6 +26,9 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
+import com.plano.accounting.annotation.ExecutionTimeLog;
 import com.plano.accounting.exception.CustomerException;
 import com.plano.accounting.mapper.OrikaBeanMapper;
 import com.plano.accounting.repository.CustomerRepository;
@@ -59,6 +62,7 @@ public class CustomerServiceImpl implements CustomerService {
 	/* (non-Javadoc)
 	 * @see com.plano.accounting.service.impl.CustomerService#createCustomer(com.plano.accounting.request.CustomerRequest)
 	 */
+	@ExecutionTimeLog
 	@Override
 	public CustomerCreatedResponse createCustomer(CustomerRequest customerRequest) throws CustomerException {
 		try {
@@ -101,6 +105,7 @@ public class CustomerServiceImpl implements CustomerService {
 	/* (non-Javadoc)
 	 * @see com.plano.accounting.service.impl.CustomerService#getCustomers(java.lang.String)
 	 */
+	@ExecutionTimeLog
 	@Override
 	public List<CustomerResponse> getCustomers(String customerType) throws CustomerException {
 		final String errorMsg = "Invalid CustomerType "+customerType+" Expected any of Individual or Business.";
@@ -152,8 +157,23 @@ public class CustomerServiceImpl implements CustomerService {
 	 */
 	@Transactional
 	@Override
+	@HystrixCommand(fallbackMethod = "getCustomerFallback",
+	ignoreExceptions = { CustomerException.class } ,
+	commandProperties = {
+			@HystrixProperty(name="execution.isolation.thread.timeoutInMilliseconds",  value="100")
+	}
+			)
 	public CustomerResponse getCustomer(Long customerId) throws CustomerException {
 		try {
+			
+			if(customerId > 0) {
+			throw new MappingException("This is just for testing Exception framework.");
+			}
+			try {
+				Thread.sleep(5000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 			logger.info("Fetching customer records for CustomerId: "+customerId);
 			CustomerEntity customerEntity = customerRepository.getOne(customerId);
 			logger.info("Fetched Records from DB, Now mapping from entity to respose.");
@@ -247,4 +267,11 @@ public class CustomerServiceImpl implements CustomerService {
 		}
 	}
 
+	public CustomerResponse getCustomerFallback(Long customerId) {
+		logger.error("Calling Falback method - getCustomerFallback....................");
+		CustomerResponse response = new CustomerResponse();
+		response.setFirstName("Ved");
+		response.setLastName("Singh");
+		return response;
+	}
 }
